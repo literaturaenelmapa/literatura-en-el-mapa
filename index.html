@@ -39,7 +39,8 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/Literaturaenelmapa_1.js"></script>
+        <script src="data/barrios_medellin_1.js"></script>
+        <script src="data/Literaturaenelmapa_2.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -58,9 +59,9 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:19, minZoom:1
-        }).fitBounds([[6.246438042993975,-75.57276559989621],[6.254457383844941,-75.55570213427215]]);
+        }).fitBounds([[6.252247491238053,-75.56151093523691],[6.255550216526436,-75.55937800203391]]);
         var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
@@ -153,7 +154,86 @@
         });
         layer_Positronnolabels_0;
         map.addLayer(layer_Positronnolabels_0);
-        function pop_Literaturaenelmapa_1(feature, layer) {
+        function pop_barrios_medellin_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODIGO'] !== null ? autolinker.link(String(feature.properties['CODIGO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE'] !== null ? autolinker.link(String(feature.properties['NOMBRE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ABREVIATUR'] !== null ? autolinker.link(String(feature.properties['ABREVIATUR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IDENTIFICA'] !== null ? autolinker.link(String(feature.properties['IDENTIFICA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LIMITECOMU'] !== null ? autolinker.link(String(feature.properties['LIMITECOMU']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ZHFISICAGE'] !== null ? autolinker.link(String(feature.properties['ZHFISICAGE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LIMITEMUNI'] !== null ? autolinker.link(String(feature.properties['LIMITEMUNI']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VIGENCIA_F'] !== null ? autolinker.link(String(feature.properties['VIGENCIA_F']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SUBTIPO_BA'] !== null ? autolinker.link(String(feature.properties['SUBTIPO_BA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LINK_DOCUM'] !== null ? autolinker.link(String(feature.properties['LINK_DOCUM']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_barrios_medellin_1_0() {
+            return {
+                pane: 'pane_barrios_medellin_1',
+                opacity: 1,
+                color: 'rgba(200,196,188,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,113,141,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_barrios_medellin_1');
+        map.getPane('pane_barrios_medellin_1').style.zIndex = 401;
+        map.getPane('pane_barrios_medellin_1').style['mix-blend-mode'] = 'normal';
+        var layer_barrios_medellin_1 = new L.geoJson(json_barrios_medellin_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_barrios_medellin_1',
+            layerName: 'layer_barrios_medellin_1',
+            pane: 'pane_barrios_medellin_1',
+            onEachFeature: pop_barrios_medellin_1,
+            style: style_barrios_medellin_1_0,
+        });
+        bounds_group.addLayer(layer_barrios_medellin_1);
+        map.addLayer(layer_barrios_medellin_1);
+        function pop_Literaturaenelmapa_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -198,7 +278,8 @@
                         <td class="visible-with-data" id="etiquetas">' + (feature.properties['etiquetas'] !== null ? autolinker.link(String(feature.properties['etiquetas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['image_url'] !== null ? autolinker.link(String(feature.properties['image_url']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Foto</th>\
+                        <td class="visible-with-data" id="image_url">\' + (feature.properties["image_url"] !== null ? \'<img src="images/\' + feature.properties["image_url"] + \'" style="width:100%;border-radius:6px;margin-top:6px;">\' : \'\') + \'</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['insta_url'] !== null ? autolinker.link(String(feature.properties['insta_url']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -223,9 +304,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Literaturaenelmapa_1_0() {
+        function style_Literaturaenelmapa_2_0() {
             return {
-                pane: 'pane_Literaturaenelmapa_1',
+                pane: 'pane_Literaturaenelmapa_2',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
@@ -239,28 +320,29 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Literaturaenelmapa_1');
-        map.getPane('pane_Literaturaenelmapa_1').style.zIndex = 401;
-        map.getPane('pane_Literaturaenelmapa_1').style['mix-blend-mode'] = 'normal';
-        var layer_Literaturaenelmapa_1 = new L.geoJson(json_Literaturaenelmapa_1, {
+        map.createPane('pane_Literaturaenelmapa_2');
+        map.getPane('pane_Literaturaenelmapa_2').style.zIndex = 402;
+        map.getPane('pane_Literaturaenelmapa_2').style['mix-blend-mode'] = 'normal';
+        var layer_Literaturaenelmapa_2 = new L.geoJson(json_Literaturaenelmapa_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Literaturaenelmapa_1',
-            layerName: 'layer_Literaturaenelmapa_1',
-            pane: 'pane_Literaturaenelmapa_1',
-            onEachFeature: pop_Literaturaenelmapa_1,
+            dataVar: 'json_Literaturaenelmapa_2',
+            layerName: 'layer_Literaturaenelmapa_2',
+            pane: 'pane_Literaturaenelmapa_2',
+            onEachFeature: pop_Literaturaenelmapa_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Literaturaenelmapa_1_0(feature));
+                return L.circleMarker(latlng, style_Literaturaenelmapa_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Literaturaenelmapa_1);
-        map.addLayer(layer_Literaturaenelmapa_1);
+        bounds_group.addLayer(layer_Literaturaenelmapa_2);
+        map.addLayer(layer_Literaturaenelmapa_2);
         var overlaysTree = [
-            {label: '<img src="legend/Literaturaenelmapa_1.png" /> Literatura en el mapa', layer: layer_Literaturaenelmapa_1},
+            {label: '<img src="legend/Literaturaenelmapa_2.png" /> Literatura en el mapa', layer: layer_Literaturaenelmapa_2},
+            {label: '<img src="legend/barrios_medellin_1.png" /> barrios_medellin', layer: layer_barrios_medellin_1},
             {label: "Positron [no labels]", layer: layer_Positronnolabels_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
@@ -272,7 +354,55 @@
             collapsed: true,
         });
         lay.addTo(map);
+        map.on("zoomend", function(){
+
+                if (map.hasLayer(layer_barrios_medellin_1)) {
+                    if (map.getZoom() <= 18 && map.getZoom() >= 13) {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        });
         setBounds();
+        var i = 0;
+        layer_barrios_medellin_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['NOMBRE'] !== null?String('<div style="color: #a09c94; font-size: 7pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['NOMBRE']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_barrios_medellin_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+                if (map.hasLayer(layer_barrios_medellin_1)) {
+                    if (map.getZoom() <= 18 && map.getZoom() >= 13) {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        resetLabels([layer_barrios_medellin_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_barrios_medellin_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_barrios_medellin_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_barrios_medellin_1]);
+        });
         </script>        
     </body>
 </html>
