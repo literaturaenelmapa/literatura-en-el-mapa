@@ -59,7 +59,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:19, minZoom:1
-        }).fitBounds([[6.252247491238053,-75.56151093523691],[6.255550216526436,-75.55937800203391]]);
+        }).fitBounds([[6.253186431071215,-75.56151093523691],[6.254611276693274,-75.55937800203391]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -277,7 +277,10 @@
                         <th scope="row">Etiquetas</th>\
                         <td class="visible-with-data" id="etiquetas">' + (feature.properties['etiquetas'] !== null ? autolinker.link(String(feature.properties['etiquetas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr><th scope="row">Foto</th><td class="visible-with-data">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'').toLocaleString() + '" style="width:100%;border-radius:6px;margin-top:6px;">' : '') + '</td></tr>\\
+                    <tr>\
+                        <th scope="row">Foto</th>\
+                        <td class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'').toLocaleString() + '" style="width:100%;border-radius:6px;margin-top:6px;">' : '') + '</td>\
+                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['insta_url'] !== null ? autolinker.link(String(feature.properties['insta_url']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
