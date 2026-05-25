@@ -216,7 +216,7 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(232,113,141,0.0)',
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_barrios_medellin_1');
@@ -224,7 +224,7 @@
         map.getPane('pane_barrios_medellin_1').style['mix-blend-mode'] = 'normal';
         var layer_barrios_medellin_1 = new L.geoJson(json_barrios_medellin_1, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_barrios_medellin_1',
             layerName: 'layer_barrios_medellin_1',
             pane: 'pane_barrios_medellin_1',
