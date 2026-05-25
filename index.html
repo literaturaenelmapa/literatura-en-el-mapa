@@ -296,7 +296,10 @@
                         <th scope="row">Tipo</th>\
                         <td class="visible-with-data" id="tipo_pin">' + (feature.properties['tipo_pin'] !== null ? autolinker.link(String(feature.properties['tipo_pin']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr><th scope="row">Ruta</th><td class="visible-with-data">' + (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps?q=' + String(feature.properties['coordenada']).replace(/'/g, '\'').toLocaleString() + '" target="_blank" style="display:inline-block;padding:5px 10px;background-color:#185FA5;color:white;text-decoration:none;border-radius:4px;font-weight:bold;margin-top:5px;font-size:11px;">🗺️ Cómo llegar</a>' : '') + '</td></tr>\\
+                    <tr>\
+                        <th scope="row">Ruta</th>\
+                        <td class="visible-with-data" id="Ruta">' + (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']).replace(/'/g, '\'').toLocaleString() + '" target="_blank" style="display:inline-block;padding:5px 10px;background-color:#185FA5;color:white;text-decoration:none;border-radius:4px;font-weight:bold;margin-top:5px;font-size:11px;">🗺️ Cómo llegar</a>' : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
