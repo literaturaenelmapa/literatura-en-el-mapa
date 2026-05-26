@@ -279,7 +279,7 @@
                     </tr>\
                     <tr>\
                         <th scope="row">Foto</th>\
-                        <td class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'') + '">' : '') + '</td>\
+                        <td class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? autolinker.link(String(feature.properties['image_url']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank">Ver en Instagram</a>' : '') + '</td>\
