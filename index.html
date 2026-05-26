@@ -321,7 +321,7 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(24,95,165,1.0)',
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Literaturaenelmapa_2');
@@ -329,7 +329,7 @@
         map.getPane('pane_Literaturaenelmapa_2').style['mix-blend-mode'] = 'normal';
         var layer_Literaturaenelmapa_2 = new L.geoJson(json_Literaturaenelmapa_2, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Literaturaenelmapa_2',
             layerName: 'layer_Literaturaenelmapa_2',
             pane: 'pane_Literaturaenelmapa_2',
