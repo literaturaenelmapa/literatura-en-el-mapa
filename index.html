@@ -22,7 +22,207 @@
         }
         </style>
         <title></title>
-    </head>
+    
+<style id="leem-styles">
+
+/* ── Popup principal ─────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+    background: #1A1A18 !important;
+    color: #F5F0E8 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    max-width: 320px !important;
+}
+
+.leaflet-popup-content {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.leaflet-popup-tip {
+    background: #1A1A18 !important;
+}
+
+.leaflet-popup-close-button {
+    color: #888780 !important;
+    font-size: 18px !important;
+    top: 8px !important;
+    right: 10px !important;
+    z-index: 10 !important;
+}
+
+.leaflet-popup-close-button:hover {
+    color: #F5F0E8 !important;
+}
+
+/* ── Tabla del popup ─────────────────────────────────────── */
+.leaflet-popup-content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    padding: 14px 16px !important;
+    display: block !important;
+}
+
+.leaflet-popup-content table tr {
+    border-bottom: 0.5px solid #242422 !important;
+}
+
+.leaflet-popup-content table tr:last-child {
+    border-bottom: none !important;
+}
+
+.leaflet-popup-content table th {
+    font-size: 9px !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #666460 !important;
+    font-weight: 600 !important;
+    padding: 6px 8px 6px 0 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    vertical-align: top !important;
+    background: transparent !important;
+    border: none !important;
+    width: 35% !important;
+}
+
+.leaflet-popup-content table td {
+    font-size: 11px !important;
+    color: #E8E0D0 !important;
+    padding: 6px 0 6px 8px !important;
+    text-align: right !important;
+    vertical-align: top !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* ── Campo Lugar — título principal ──────────────────────── */
+.leaflet-popup-content table tr:first-child th {
+    display: none !important;
+}
+
+.leaflet-popup-content table tr:first-child td {
+    font-family: Georgia, serif !important;
+    font-size: 17px !important;
+    color: #F5F0E8 !important;
+    text-align: left !important;
+    padding: 14px 16px 4px 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* ── Campo Título — serif destacado ──────────────────────── */
+#titulo_lib {
+    font-family: Georgia, serif !important;
+    font-size: 13px !important;
+    font-style: italic !important;
+    color: #C4B89A !important;
+}
+
+/* ── Campo Cita — bloque especial ────────────────────────── */
+#cita {
+    font-family: Georgia, serif !important;
+    font-style: italic !important;
+    color: #C4B89A !important;
+    font-size: 11px !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    border-left: 2px solid #C4754A !important;
+    padding-left: 10px !important;
+    margin: 4px 0 !important;
+}
+
+/* ── Imagen ──────────────────────────────────────────────── */
+#image_url img {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 6px !important;
+    margin-top: 6px !important;
+    display: block !important;
+}
+
+/* ── Coordenadas ─────────────────────────────────────────── */
+#coordenada {
+    font-family: 'Courier New', monospace !important;
+    font-size: 9px !important;
+    color: #C4754A !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* ── Botón Cómo llegar ───────────────────────────────────── */
+#coordenada a {
+    display: block !important;
+    width: 100% !important;
+    padding: 9px 12px !important;
+    background: #C4754A !important;
+    color: #F5F0E8 !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em !important;
+    text-align: center !important;
+    margin-top: 8px !important;
+    box-sizing: border-box !important;
+}
+
+#coordenada a:hover {
+    background: #B3633A !important;
+}
+
+/* ── Botón Instagram ─────────────────────────────────────── */
+#insta_url a {
+    display: block !important;
+    width: 100% !important;
+    padding: 8px 12px !important;
+    background: transparent !important;
+    color: #C4B89A !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    border: 0.5px solid #2C3E4A !important;
+    font-size: 11px !important;
+    text-align: center !important;
+    margin-top: 6px !important;
+    box-sizing: border-box !important;
+}
+
+#insta_url a:hover {
+    border-color: #C4B89A !important;
+    color: #F5F0E8 !important;
+}
+
+/* ── Footer LEEM ─────────────────────────────────────────── */
+.leaflet-popup-content table::after {
+    content: 'LITERATURA EN EL MAPA' !important;
+    display: block !important;
+    font-size: 8px !important;
+    letter-spacing: 0.12em !important;
+    color: #29ABD4 !important;
+    text-align: center !important;
+    padding: 10px 16px 14px !important;
+    border-top: 0.5px solid #2C3E4A !important;
+    margin-top: 10px !important;
+}
+
+/* ── Scrollbar del popup ─────────────────────────────────── */
+.leaflet-popup-content::-webkit-scrollbar {
+    width: 4px !important;
+}
+.leaflet-popup-content::-webkit-scrollbar-track {
+    background: #1A1A18 !important;
+}
+.leaflet-popup-content::-webkit-scrollbar-thumb {
+    background: #2C3E4A !important;
+    border-radius: 4px !important;
+}
+
+</style>
+
+</head>
     <body>
         <div id="map">
         </div>
@@ -165,20 +365,39 @@
                 },
                 mouseover: highlightFeature,
             });
-            var popupContent = '<div class="popup-leem-contenedor">' +
-            (feature.properties['imagen_url'] !== null ? '<div class="popup-leem-foto"><img src="images/' + String(feature.properties['imagen_url']).replace(/'/g, "\\'") + '"></div>' : '') +
-            (feature.properties['tipo_pin'] !== null ? '<div class="popup-leem-tag">' + String(feature.properties['tipo_pin']) + '</div>' : '') +
-            (feature.properties['titulo_lib'] !== null ? '<div class="popup-leem-titulo">' + String(feature.properties['titulo_lib']) + '</div>' : '') +
-            (feature.properties['autor'] !== null ? '<div class="popup-leem-autor">' + String(feature.properties['autor']) + '</div>' : '') +
-            (feature.properties['cita'] !== null ? '<div class="popup-leem-cita">' + String(feature.properties['cita']) + '</div>' : '') +
-            (feature.properties['genero'] !== null ? '<div class="popup-leem-meta-fila"><span class="popup-leem-meta-label">Género</span><span class="popup-leem-meta-valor">' + String(feature.properties['genero']) + '</span></div>' : '') +
-            (feature.properties['fuente'] !== null ? '<div class="popup-leem-meta-fila"><span class="popup-leem-meta-label">Fuente</span><span class="popup-leem-meta-valor">' + String(feature.properties['fuente']) + '</span></div>' : '') +
-            (feature.properties['ano_pub'] !== null ? '<div class="popup-leem-meta-fila"><span class="popup-leem-meta-label">Año</span><span class="popup-leem-meta-valor">' + String(feature.properties['ano_pub']) + '</span></div>' : '') +
-            (feature.properties['lugar'] !== null ? '<div class="popup-leem-lugar">📍 ' + String(feature.properties['lugar']) + ' (' + (feature.properties['ciudad'] !== null ? String(feature.properties['ciudad']) : '') + ')</div>' : '') +
-            (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank" class="popup-leem-btn-maps">🗺️ Cómo llegar</a>' : '') +
-            (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank" class="popup-leem-btn-insta">Ver en Instagram</a>' : '') +
-        '</div>';
-            var content = popupContent;
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODIGO'] !== null ? autolinker.link(String(feature.properties['CODIGO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE'] !== null ? autolinker.link(String(feature.properties['NOMBRE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ABREVIATUR'] !== null ? autolinker.link(String(feature.properties['ABREVIATUR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IDENTIFICA'] !== null ? autolinker.link(String(feature.properties['IDENTIFICA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LIMITECOMU'] !== null ? autolinker.link(String(feature.properties['LIMITECOMU']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ZHFISICAGE'] !== null ? autolinker.link(String(feature.properties['ZHFISICAGE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LIMITEMUNI'] !== null ? autolinker.link(String(feature.properties['LIMITEMUNI']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VIGENCIA_F'] !== null ? autolinker.link(String(feature.properties['VIGENCIA_F']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SUBTIPO_BA'] !== null ? autolinker.link(String(feature.properties['SUBTIPO_BA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LINK_DOCUM'] !== null ? autolinker.link(String(feature.properties['LINK_DOCUM']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -225,4 +444,169 @@
                 },
                 mouseover: highlightFeature,
             });
-            
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lugar</th>\
+                        <td>' + (feature.properties['lugar'] !== null ? autolinker.link(String(feature.properties['lugar']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Ciudad</th>\
+                        <td class="visible-with-data" id="ciudad">' + (feature.properties['ciudad'] !== null ? autolinker.link(String(feature.properties['ciudad']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Título</th>\
+                        <td>' + (feature.properties['titulo_lib'] !== null ? autolinker.link(String(feature.properties['titulo_lib']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Autor</th>\
+                        <td class="visible-with-data" id="autor">' + (feature.properties['autor'] !== null ? autolinker.link(String(feature.properties['autor']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Año de publicación</th>\
+                        <td class="visible-with-data" id="anio_pub">' + (feature.properties['anio_pub'] !== null ? autolinker.link(String(feature.properties['anio_pub']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Genero</th>\
+                        <td class="visible-with-data" id="genero">' + (feature.properties['genero'] !== null ? autolinker.link(String(feature.properties['genero']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Cita</th>\
+                        <td class="visible-with-data" id="cita">' + (feature.properties['cita'] !== null ? autolinker.link(String(feature.properties['cita']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Etiquetas</th>\
+                        <td class="visible-with-data" id="etiquetas">' + (feature.properties['etiquetas'] !== null ? autolinker.link(String(feature.properties['etiquetas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Foto</th>\
+                        <td class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'') + '" style="width:100%;max-width:300px;border-radius:6px;margin-top:6px;">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank">📷 Ver en Instagram</a>' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Fuente</th>\
+                        <td>' + (feature.properties['fuente'] !== null ? autolinker.link(String(feature.properties['fuente']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nota</th>\
+                        <td class="visible-with-data" id="resumen">' + (feature.properties['resumen'] !== null ? autolinker.link(String(feature.properties['resumen']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tipo</th>\
+                        <td class="visible-with-data" id="tipo_pin">' + (feature.properties['tipo_pin'] !== null ? autolinker.link(String(feature.properties['tipo_pin']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Ruta</th>\
+                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a>' : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Literaturaenelmapa_2_0() {
+            return {
+                pane: 'pane_Literaturaenelmapa_2',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,95,165,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Literaturaenelmapa_2');
+        map.getPane('pane_Literaturaenelmapa_2').style.zIndex = 402;
+        map.getPane('pane_Literaturaenelmapa_2').style['mix-blend-mode'] = 'normal';
+        var layer_Literaturaenelmapa_2 = new L.geoJson(json_Literaturaenelmapa_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Literaturaenelmapa_2',
+            layerName: 'layer_Literaturaenelmapa_2',
+            pane: 'pane_Literaturaenelmapa_2',
+            onEachFeature: pop_Literaturaenelmapa_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Literaturaenelmapa_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Literaturaenelmapa_2);
+        map.addLayer(layer_Literaturaenelmapa_2);
+        var overlaysTree = [
+            {label: '<img src="legend/Literaturaenelmapa_2.png" /> Literatura en el mapa', layer: layer_Literaturaenelmapa_2},
+            {label: '<img src="legend/barrios_medellin_1.png" /> barrios_medellin', layer: layer_barrios_medellin_1},
+            {label: "Positron [no labels]", layer: layer_Positronnolabels_0, radioGroup: 'bm' },]
+        var lay = L.control.layers.tree(null, overlaysTree,{
+            //namedToggle: true,
+            //selectorBack: false,
+            //closedSymbol: '&#8862; &#x1f5c0;',
+            //openedSymbol: '&#8863; &#x1f5c1;',
+            //collapseAll: 'Collapse all',
+            //expandAll: 'Expand all',
+            collapsed: true,
+        });
+        lay.addTo(map);
+        map.on("zoomend", function(){
+
+                if (map.hasLayer(layer_barrios_medellin_1)) {
+                    if (map.getZoom() <= 18 && map.getZoom() >= 13) {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        });
+        setBounds();
+        var i = 0;
+        layer_barrios_medellin_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['NOMBRE'] !== null?String('<div style="color: #a09c94; font-size: 7pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['NOMBRE']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_barrios_medellin_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+                if (map.hasLayer(layer_barrios_medellin_1)) {
+                    if (map.getZoom() <= 18 && map.getZoom() >= 13) {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_barrios_medellin_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        resetLabels([layer_barrios_medellin_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_barrios_medellin_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_barrios_medellin_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_barrios_medellin_1]);
+        });
+        </script>        
+    </body>
+</html>
