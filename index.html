@@ -220,6 +220,11 @@
     border-radius: 4px !important;
 }
 
+/* ── Bloquear eventos de ratón en capa de barrios ────────── */
+.leaflet-pane.leaflet-pane_barrios_medellin_1-pane {
+    pointer-events: none !important;
+}
+
 </style>
 
 </head>
@@ -355,16 +360,7 @@
         layer_Positronnolabels_0;
         map.addLayer(layer_Positronnolabels_0);
         function pop_barrios_medellin_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
+            // Interactividad desactivada — LEEM script
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['CODIGO'] !== null ? autolinker.link(String(feature.properties['CODIGO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -422,6 +418,7 @@
         map.createPane('pane_barrios_medellin_1');
         map.getPane('pane_barrios_medellin_1').style.zIndex = 401;
         map.getPane('pane_barrios_medellin_1').style['mix-blend-mode'] = 'normal';
+        map.getPane('pane_barrios_medellin_1').style['pointer-events'] = 'none';
         var layer_barrios_medellin_1 = new L.geoJson(json_barrios_medellin_1, {
             attribution: '',
             interactive: false,
