@@ -33,7 +33,7 @@
     box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
     padding: 0 !important;
     overflow: hidden !important;
-    max-width: 400px !important;
+    max-width: 500px !important;
 }
 
 .leaflet-popup-content {
@@ -79,7 +79,7 @@
     text-transform: uppercase !important;
     color: #666460 !important;
     font-weight: 600 !important;
-    padding: 6px 8px 6px 0 !important;
+    padding: 3px 8px 3px 0 !important;
     text-align: left !important;
     white-space: nowrap !important;
     vertical-align: top !important;
@@ -91,7 +91,7 @@
 .leaflet-popup-content table td {
     font-size: 11px !important;
     color: #E8E0D0 !important;
-    padding: 6px 0 6px 8px !important;
+    padding: 3px 0 3px 8px !important;
     text-align: right !important;
     vertical-align: top !important;
     background: transparent !important;
@@ -169,7 +169,7 @@
     font-size: 12px !important;
     letter-spacing: 0.04em !important;
     text-align: center !important;
-    margin-top: 8px !important;
+    margin: 8px auto !important;
     box-sizing: border-box !important;
 }
 
@@ -267,7 +267,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:19, minZoom:1
-        }).fitBounds([[6.245483460330195,-75.56996816953351],[6.256366117977894,-75.54504622128958]]);
+        }).fitBounds([[6.2447701191173,-75.57742103156268],[6.2556527767649985,-75.55249908331875]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -483,10 +483,6 @@
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank">📷 Ver en Instagram</a>' : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Fuente</th>\
-                        <td>' + (feature.properties['fuente'] !== null ? autolinker.link(String(feature.properties['fuente']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Nota</th>\
