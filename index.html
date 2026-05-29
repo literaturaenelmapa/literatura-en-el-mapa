@@ -500,7 +500,7 @@ td#coordenada {
                     </tr>\
                     <tr>\
                         <th scope="row">Ruta</th>\
-                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a>' : '') + '</td>\
+                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<div style="text-align:center"><a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a></div>' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
