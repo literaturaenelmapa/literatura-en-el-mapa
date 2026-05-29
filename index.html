@@ -156,17 +156,10 @@
     letter-spacing: 0.05em !important;
 }
 
-/* ── Celda que contiene el botón ────────────────────────── */
-td#coordenada {
-    text-align: center !important;
-    padding: 6px 0 !important;
-}
-
 /* ── Botón Cómo llegar ───────────────────────────────────── */
 #coordenada a {
-    display: block !important;
-    width: fit-content !important;
-    padding: 9px 12px !important;
+    display: inline-block !important;
+    padding: 9px 24px !important;
     background: #C4754A !important;
     color: #F5F0E8 !important;
     text-decoration: none !important;
@@ -174,9 +167,7 @@ td#coordenada {
     font-weight: 700 !important;
     font-size: 12px !important;
     letter-spacing: 0.04em !important;
-    text-align: center !important;
-    margin: 8px auto !important;
-    box-sizing: border-box !important;
+    margin-top: 8px !important;
 }
 
 #coordenada a:hover {
@@ -500,7 +491,7 @@ td#coordenada {
                     </tr>\
                     <tr>\
                         <th scope="row">Ruta</th>\
-                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<div style="text-align:center"><a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a></div>' : '') + '</td>\
+                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<table style="width:100%;border:none;border-collapse:collapse"><tr><td style="text-align:center;border:none;padding:4px 0"><a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a></td></tr></table>' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
