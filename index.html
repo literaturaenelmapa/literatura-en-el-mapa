@@ -33,7 +33,7 @@
     box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
     padding: 0 !important;
     overflow: hidden !important;
-    max-width: 500px !important;
+    max-width: min(500px, 95vw) !important;
 }
 
 .leaflet-popup-content {
@@ -236,6 +236,9 @@ td#coordenada {
 
 /* ── Layout responsivo móvil ─────────────────────────────── */
 @media (max-width: 480px) {
+    .leaflet-popup-content-wrapper {
+        overflow-x: hidden !important;
+    }
     .leaflet-popup-content table th {
         display: block !important;
         width: 100% !important;
@@ -249,6 +252,10 @@ td#coordenada {
     }
     .leaflet-popup-content table tr:first-child td {
         padding: 14px 16px 4px 16px !important;
+    }
+    #image_url img {
+        max-width: 100% !important;
+        height: auto !important;
     }
     #coordenada {
         text-align: center !important;
