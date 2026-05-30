@@ -33,7 +33,7 @@
     box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
     padding: 0 !important;
     overflow: hidden !important;
-    max-width: min(500px, 90vw) !important;
+    max-width: 500px !important;
 }
 
 .leaflet-popup-content {
@@ -154,14 +154,19 @@
     font-size: 9px !important;
     color: #C4754A !important;
     letter-spacing: 0.05em !important;
+}
+
+/* ── Celda que contiene el botón ────────────────────────── */
+td#coordenada {
     text-align: center !important;
-    padding: 6px 0 6px 0 !important;
+    padding: 6px 0 !important;
 }
 
 /* ── Botón Cómo llegar ───────────────────────────────────── */
 #coordenada a {
-    display: inline-block !important;
-    padding: 9px 24px !important;
+    display: block !important;
+    width: fit-content !important;
+    padding: 9px 12px !important;
     background: #C4754A !important;
     color: #F5F0E8 !important;
     text-decoration: none !important;
@@ -169,7 +174,9 @@
     font-weight: 700 !important;
     font-size: 12px !important;
     letter-spacing: 0.04em !important;
-    margin-top: 8px !important;
+    text-align: center !important;
+    margin: 8px auto !important;
+    box-sizing: border-box !important;
 }
 
 #coordenada a:hover {
@@ -225,6 +232,27 @@
 /* ── Bloquear eventos de ratón en capa de barrios ────────── */
 .leaflet-pane.leaflet-pane_barrios_medellin_1-pane {
     pointer-events: none !important;
+}
+
+/* ── Layout responsivo móvil ─────────────────────────────── */
+@media (max-width: 480px) {
+    .leaflet-popup-content table th {
+        display: block !important;
+        width: 100% !important;
+        padding: 6px 16px 0 16px !important;
+    }
+    .leaflet-popup-content table td {
+        display: block !important;
+        width: 100% !important;
+        text-align: left !important;
+        padding: 2px 16px 6px 16px !important;
+    }
+    .leaflet-popup-content table tr:first-child td {
+        padding: 14px 16px 4px 16px !important;
+    }
+    #coordenada {
+        text-align: center !important;
+    }
 }
 
 </style>
@@ -493,7 +521,7 @@
                     </tr>\
                     <tr>\
                         <th scope="row">Ruta</th>\
-                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a>' : '') + '</td>\
+                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<div style="text-align:center"><a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a></div>' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
