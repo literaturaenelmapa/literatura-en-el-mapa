@@ -154,6 +154,8 @@
     font-size: 9px !important;
     color: #C4754A !important;
     letter-spacing: 0.05em !important;
+    text-align: center !important;
+    padding: 6px 0 6px 0 !important;
 }
 
 /* ── Botón Cómo llegar ───────────────────────────────────── */
@@ -491,7 +493,7 @@
                     </tr>\
                     <tr>\
                         <th scope="row">Ruta</th>\
-                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<table style="width:100%;border:none;border-collapse:collapse"><tr><td style="text-align:center;border:none;padding:4px 0"><a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a></td></tr></table>' : '') + '</td>\
+                        <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a>' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
