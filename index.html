@@ -25,15 +25,14 @@
     
 <style id="leem-styles">
 
-/* ── Popup principal ─────────────────────────────────────── */
+/* ── Contenedor del popup ────────────────────────────────── */
 .leaflet-popup-content-wrapper {
     background: #1A1A18 !important;
     color: #F5F0E8 !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
     padding: 0 !important;
     overflow: hidden !important;
-    max-width: min(500px, 95vw) !important;
 }
 
 .leaflet-popup-content {
@@ -47,175 +46,241 @@
 
 .leaflet-popup-close-button {
     color: #F5F0E8 !important;
-    font-size: 18px !important;
-    top: 8px !important;
-    right: 10px !important;
+    font-size: 20px !important;
+    top: 10px !important;
+    right: 12px !important;
     z-index: 10 !important;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.8) !important;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.9) !important;
 }
 
 .leaflet-popup-close-button:hover {
     color: #29ABD4 !important;
 }
 
-/* ── Tabla del popup ─────────────────────────────────────── */
-/* padding en 0: lo asumen las celdas, para que la foto sangre */
+/* ── La tabla se comporta como grilla de 2 columnas ──────── */
 .leaflet-popup-content table {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
     width: 100% !important;
     border-collapse: collapse !important;
     padding: 0 !important;
-    display: block !important;
+    margin: 0 !important;
 }
 
+/* Fila genérica de datos: etiqueta | valor */
 .leaflet-popup-content table tr {
-    border-bottom: 0.5px solid #242422 !important;
-}
-
-.leaflet-popup-content table tr:last-child {
-    border-bottom: none !important;
+    grid-column: 1 / -1 !important;
+    display: grid !important;
+    grid-template-columns: 42% 1fr !important;
+    align-items: baseline !important;
+    padding: 10px 18px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 
 .leaflet-popup-content table th {
-    font-size: 9px !important;
-    letter-spacing: 0.1em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: 0.09em !important;
     text-transform: uppercase !important;
-    color: #666460 !important;
-    font-weight: 600 !important;
-    padding: 5px 8px 5px 16px !important;
+    color: #C4B89A !important;
+    font-weight: 700 !important;
     text-align: left !important;
-    white-space: nowrap !important;
-    vertical-align: top !important;
+    padding: 0 10px 0 0 !important;
     background: transparent !important;
     border: none !important;
-    width: 35% !important;
+    vertical-align: baseline !important;
 }
 
 .leaflet-popup-content table td {
-    font-size: 11px !important;
-    color: #E8E0D0 !important;
-    padding: 5px 16px 5px 8px !important;
-    text-align: right !important;
-    vertical-align: top !important;
-    background: transparent !important;
-    border: none !important;
-}
-
-/* ── Campo Lugar — título principal ──────────────────────── */
-td#lugar {
-    font-family: Georgia, serif !important;
-    font-size: 17px !important;
-    color: #F5F0E8 !important;
-    text-align: left !important;
-    padding: 14px 16px 8px 16px !important;
-    font-weight: 400 !important;
-    line-height: 1.25 !important;
-    display: block !important;
-    width: 100% !important;
-    white-space: normal !important;
-}
-
-/* ── Ciudad — subtítulo bajo el lugar ────────────────────── */
-.leem-ciudad {
-    font-family: Arial, Helvetica, sans-serif !important;
-    font-size: 10px !important;
-    letter-spacing: 0.06em !important;
-    color: #888780 !important;
-    margin-top: 4px !important;
-    font-style: normal !important;
-}
-
-/* ── Campo Obra — serif destacado ────────────────────────── */
-#titulo_lib {
     font-family: Georgia, serif !important;
     font-size: 13px !important;
-    font-style: italic !important;
-    color: #C4B89A !important;
+    color: #F5F0E8 !important;
+    text-align: right !important;
+    padding: 0 0 0 12px !important;
+    background: transparent !important;
+    border: none !important;
+    border-left: 1px solid rgba(255,255,255,0.06) !important;
+    vertical-align: baseline !important;
 }
 
-/* ── Campo Cita — bloque especial ────────────────────────── */
-#cita {
-    font-family: Georgia, serif !important;
-    font-style: italic !important;
-    color: #C4B89A !important;
-    font-size: 11px !important;
-    line-height: 1.6 !important;
-    text-align: left !important;
-    border-left: 2px solid #C4754A !important;
-    padding-left: 10px !important;
-    margin: 4px 0 !important;
-}
-
-/* ── Foto — sangrada al borde superior ───────────────────── */
-td#image_url {
-    padding: 0 !important;
+/* ── Cabecera: foto a la izquierda ───────────────────────── */
+tr.leem-foto {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
     display: block !important;
-    width: 100% !important;
-    text-align: left !important;
+    padding: 0 !important;
+    min-height: 158px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+td#image_url {
+    display: block !important;
+    height: 100% !important;
+    min-height: 158px !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
 #image_url img {
     width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 158px !important;
+    object-fit: cover !important;
+    display: block !important;
     border-radius: 0 !important;
     margin: 0 !important;
+}
+
+/* ── Cabecera: título a la derecha ───────────────────────── */
+/* Sin foto, el título ocupa todo el ancho */
+tr.leem-lugar {
+    grid-column: 1 / -1 !important;
+    display: block !important;
+    padding: 20px 34px 16px 18px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* Con foto, se sienta al lado derecho de ella */
+tr.leem-foto + tr.leem-lugar {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 18px 34px 18px 16px !important;
+}
+
+td#lugar {
+    font-family: Georgia, serif !important;
+    font-size: 19px !important;
+    line-height: 1.18 !important;
+    color: #F5F0E8 !important;
+    text-align: left !important;
+    padding: 0 !important;
+    border: none !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+.leem-ciudad {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.04em !important;
+    color: #888780 !important;
+    margin-top: 7px !important;
+    font-style: normal !important;
+}
+
+/* ── Obra en cursiva dorada ──────────────────────────────── */
+#titulo_lib {
+    font-family: Georgia, serif !important;
+    font-style: italic !important;
+    color: #C4B89A !important;
+}
+
+/* ── Bloque inferior: cita a la izquierda ────────────────── */
+tr.leem-cita {
+    grid-column: 1 !important;
+    display: block !important;
+    padding: 16px 10px 16px 18px !important;
+    border-bottom: none !important;
+}
+
+tr.leem-cita th {
+    display: none !important;
+}
+
+td#cita {
+    font-family: Georgia, serif !important;
+    font-style: italic !important;
+    color: #C4B89A !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    text-align: left !important;
+    border-left: 3px solid #C4754A !important;
+    border-radius: 0 !important;
+    padding: 2px 0 2px 12px !important;
     display: block !important;
 }
 
-/* ── Coordenadas ─────────────────────────────────────────── */
-#coordenada {
-    font-family: 'Courier New', monospace !important;
-    font-size: 9px !important;
-    color: #C4754A !important;
-    letter-spacing: 0.05em !important;
+/* ── Bloque inferior: botón a la derecha ─────────────────── */
+/* Sin cita, el botón ocupa todo el ancho */
+tr.leem-ruta {
+    grid-column: 1 / -1 !important;
+    display: block !important;
+    padding: 14px 18px !important;
+    border-bottom: none !important;
 }
 
-/* ── Celda que contiene el botón ────────────────────────── */
+/* Con cita, se sienta a su derecha */
+tr.leem-cita + tr.leem-ruta {
+    grid-column: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 16px 18px 16px 10px !important;
+}
+
+tr.leem-ruta th {
+    display: none !important;
+}
+
 td#coordenada {
+    padding: 0 !important;
+    border: none !important;
+    width: 100% !important;
     text-align: center !important;
-    padding: 6px 16px !important;
 }
 
-/* ── Botón Cómo llegar ───────────────────────────────────── */
 #coordenada a {
-    display: block !important;
-    width: fit-content !important;
-    padding: 9px 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 15px 12px !important;
     background: #C4754A !important;
     color: #F5F0E8 !important;
+    font-family: Georgia, serif !important;
+    font-size: 13px !important;
+    line-height: 1.25 !important;
     text-decoration: none !important;
-    border-radius: 6px !important;
-    font-weight: 700 !important;
-    font-size: 12px !important;
-    letter-spacing: 0.04em !important;
+    border-radius: 10px !important;
     text-align: center !important;
-    margin: 8px auto !important;
-    box-sizing: border-box !important;
 }
 
 #coordenada a:hover {
     background: #B3633A !important;
 }
 
-/* ── Botón Instagram ─────────────────────────────────────── */
+/* ── Instagram ───────────────────────────────────────────── */
+tr.leem-insta {
+    grid-column: 1 / -1 !important;
+    display: block !important;
+    padding: 10px 18px !important;
+}
+
 td#insta_url {
-    padding: 6px 16px !important;
-    text-align: center !important;
+    padding: 0 !important;
+    border: none !important;
+    width: 100% !important;
 }
 
 #insta_url a {
     display: block !important;
     width: 100% !important;
-    padding: 8px 12px !important;
+    box-sizing: border-box !important;
+    padding: 10px 12px !important;
     background: transparent !important;
     color: #C4B89A !important;
-    text-decoration: none !important;
-    border-radius: 6px !important;
-    border: 0.5px solid #2C3E4A !important;
+    font-family: Arial, Helvetica, sans-serif !important;
     font-size: 11px !important;
+    letter-spacing: 0.04em !important;
+    text-decoration: none !important;
+    border: 1px solid #2C3E4A !important;
+    border-radius: 10px !important;
     text-align: center !important;
-    margin-top: 6px !important;
-    box-sizing: border-box !important;
 }
 
 #insta_url a:hover {
@@ -223,20 +288,22 @@ td#insta_url {
     color: #F5F0E8 !important;
 }
 
-/* ── Footer LEEM ─────────────────────────────────────────── */
+/* ── Pie de tarjeta ──────────────────────────────────────── */
 .leaflet-popup-content table::after {
     content: 'LITERATURA EN EL MAPA' !important;
+    grid-column: 1 / -1 !important;
     display: block !important;
-    font-size: 8px !important;
-    letter-spacing: 0.12em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 9px !important;
+    letter-spacing: 0.14em !important;
     color: #29ABD4 !important;
+    opacity: 0.75 !important;
     text-align: center !important;
-    padding: 10px 16px 14px !important;
-    border-top: 0.5px solid #2C3E4A !important;
-    margin-top: 10px !important;
+    padding: 12px 18px 14px !important;
+    border-top: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* ── Scrollbar del popup ─────────────────────────────────── */
+/* ── Scrollbar ───────────────────────────────────────────── */
 .leaflet-popup-content::-webkit-scrollbar {
     width: 4px !important;
 }
@@ -248,39 +315,48 @@ td#insta_url {
     border-radius: 4px !important;
 }
 
-/* ── Bloquear eventos de ratón en capa de barrios ────────── */
+/* ── Capa de barrios sin eventos de ratón ────────────────── */
 .leaflet-pane.leaflet-pane_barrios_medellin_1-pane {
     pointer-events: none !important;
 }
 
-/* ── Layout responsivo móvil ─────────────────────────────── */
+/* ── Móvil: todo a una columna ───────────────────────────── */
 @media (max-width: 480px) {
     .leaflet-popup-content-wrapper {
         overflow-x: hidden !important;
     }
-    .leaflet-popup-content table th {
-        display: block !important;
-        width: 100% !important;
-        padding: 6px 16px 0 16px !important;
+    .leaflet-popup-content table {
+        grid-template-columns: 1fr !important;
+    }
+    .leaflet-popup-content table tr,
+    tr.leem-foto,
+    tr.leem-foto + tr.leem-lugar,
+    tr.leem-cita,
+    tr.leem-cita + tr.leem-ruta {
+        grid-column: 1 / -1 !important;
+        grid-row: auto !important;
+    }
+    .leaflet-popup-content table tr {
+        grid-template-columns: 1fr !important;
+        padding: 9px 18px !important;
     }
     .leaflet-popup-content table td {
-        display: block !important;
-        width: 100% !important;
         text-align: left !important;
-        padding: 2px 16px 6px 16px !important;
+        border-left: none !important;
+        padding: 3px 0 0 0 !important;
     }
-    td#lugar {
-        padding: 14px 16px 8px 16px !important;
-    }
-    td#image_url {
+    tr.leem-foto {
+        min-height: 175px !important;
         padding: 0 !important;
     }
-    #image_url img {
-        max-width: 100% !important;
-        height: auto !important;
+    tr.leem-foto + tr.leem-lugar {
+        padding: 16px 34px 14px 18px !important;
     }
-    #coordenada {
-        text-align: center !important;
+    tr.leem-cita {
+        padding: 14px 18px !important;
+    }
+    tr.leem-cita + tr.leem-ruta {
+        padding: 4px 18px 14px !important;
     }
 }
 
@@ -512,10 +588,10 @@ td#insta_url {
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
+                    <tr class="leem-foto">\
                         <td colspan="2" class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'') + '">' : '') + '</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="leem-lugar">\
                         <td colspan="2" id="lugar">' + (feature.properties['lugar'] !== null ? autolinker.link(String(feature.properties['lugar']).replace(/'/g, '\'').toLocaleString()) : '') + (feature.properties['ciudad'] !== null ? '<div class="leem-ciudad">' + String(feature.properties['ciudad']) + '</div>' : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -535,21 +611,21 @@ td#insta_url {
                         <td class="visible-with-data" id="genero">' + (feature.properties['genero'] !== null ? autolinker.link(String(feature.properties['genero']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Cita</th>\
-                        <td class="visible-with-data" id="cita">' + (feature.properties['cita'] !== null ? autolinker.link(String(feature.properties['cita']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">Etiquetas</th>\
                         <td class="visible-with-data" id="etiquetas">' + (feature.properties['etiquetas'] !== null ? autolinker.link(String(feature.properties['etiquetas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="leem-insta">\
                         <td colspan="2" class="visible-with-data" id="insta_url">' + (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank">📷 Ver en Instagram</a>' : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Nota</th>\
                         <td class="visible-with-data" id="resumen">' + (feature.properties['resumen'] !== null ? autolinker.link(String(feature.properties['resumen']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="leem-cita">\
+                        <th scope="row">Cita</th>\
+                        <td class="visible-with-data" id="cita">' + (feature.properties['cita'] !== null ? autolinker.link(String(feature.properties['cita']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr class="leem-ruta">\
                         <th scope="row">Ruta</th>\
                         <td class="visible-with-data" id="coordenada">' + (feature.properties['coordenada'] !== null ? '<div style="text-align:center"><a href="https://www.google.com/maps/search/?api=1&query=' + String(feature.properties['coordenada']) + '" target="_blank">🗺️ Cómo llegar</a></div>' : '') + '</td>\
                     </tr>\
@@ -558,7 +634,7 @@ td#insta_url {
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { maxHeight: 620, maxWidth: 460, minWidth: 320 });
         }
 
         function style_Literaturaenelmapa_2_0() {
