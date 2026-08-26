@@ -46,22 +46,24 @@
 }
 
 .leaflet-popup-close-button {
-    color: #888780 !important;
+    color: #F5F0E8 !important;
     font-size: 18px !important;
     top: 8px !important;
     right: 10px !important;
     z-index: 10 !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8) !important;
 }
 
 .leaflet-popup-close-button:hover {
-    color: #F5F0E8 !important;
+    color: #29ABD4 !important;
 }
 
 /* ── Tabla del popup ─────────────────────────────────────── */
+/* padding en 0: lo asumen las celdas, para que la foto sangre */
 .leaflet-popup-content table {
     width: 100% !important;
     border-collapse: collapse !important;
-    padding: 14px 16px !important;
+    padding: 0 !important;
     display: block !important;
 }
 
@@ -79,7 +81,7 @@
     text-transform: uppercase !important;
     color: #666460 !important;
     font-weight: 600 !important;
-    padding: 3px 8px 3px 0 !important;
+    padding: 5px 8px 5px 16px !important;
     text-align: left !important;
     white-space: nowrap !important;
     vertical-align: top !important;
@@ -91,7 +93,7 @@
 .leaflet-popup-content table td {
     font-size: 11px !important;
     color: #E8E0D0 !important;
-    padding: 3px 0 3px 8px !important;
+    padding: 5px 16px 5px 8px !important;
     text-align: right !important;
     vertical-align: top !important;
     background: transparent !important;
@@ -99,26 +101,30 @@
 }
 
 /* ── Campo Lugar — título principal ──────────────────────── */
-.leaflet-popup-content table tr:first-child th {
-    display: none !important;
-}
-
-.leaflet-popup-content table tr:first-child td {
+td#lugar {
     font-family: Georgia, serif !important;
     font-size: 17px !important;
     color: #F5F0E8 !important;
     text-align: left !important;
-    padding: 14px 16px 4px 16px !important;
+    padding: 14px 16px 8px 16px !important;
     font-weight: 400 !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
     display: block !important;
     width: 100% !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    white-space: normal !important;
 }
 
-/* ── Campo Título — serif destacado ──────────────────────── */
+/* ── Ciudad — subtítulo bajo el lugar ────────────────────── */
+.leem-ciudad {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: 0.06em !important;
+    color: #888780 !important;
+    margin-top: 4px !important;
+    font-style: normal !important;
+}
+
+/* ── Campo Obra — serif destacado ────────────────────────── */
 #titulo_lib {
     font-family: Georgia, serif !important;
     font-size: 13px !important;
@@ -139,12 +145,20 @@
     margin: 4px 0 !important;
 }
 
-/* ── Imagen ──────────────────────────────────────────────── */
+/* ── Foto — sangrada al borde superior ───────────────────── */
+td#image_url {
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+}
+
 #image_url img {
     width: 100% !important;
     max-width: 100% !important;
-    border-radius: 6px !important;
-    margin-top: 6px !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
     display: block !important;
 }
 
@@ -159,7 +173,7 @@
 /* ── Celda que contiene el botón ────────────────────────── */
 td#coordenada {
     text-align: center !important;
-    padding: 6px 0 !important;
+    padding: 6px 16px !important;
 }
 
 /* ── Botón Cómo llegar ───────────────────────────────────── */
@@ -184,6 +198,11 @@ td#coordenada {
 }
 
 /* ── Botón Instagram ─────────────────────────────────────── */
+td#insta_url {
+    padding: 6px 16px !important;
+    text-align: center !important;
+}
+
 #insta_url a {
     display: block !important;
     width: 100% !important;
@@ -250,8 +269,11 @@ td#coordenada {
         text-align: left !important;
         padding: 2px 16px 6px 16px !important;
     }
-    .leaflet-popup-content table tr:first-child td {
-        padding: 14px 16px 4px 16px !important;
+    td#lugar {
+        padding: 14px 16px 8px 16px !important;
+    }
+    td#image_url {
+        padding: 0 !important;
     }
     #image_url img {
         max-width: 100% !important;
@@ -328,9 +350,20 @@ td#coordenada {
                 var src = imgTd.getAttribute('src');
                 if (/\.(jpg|jpeg|png|gif|bmp|webp|avif)$/i.test(src)) {
                     popup._contentNode.classList.add('media');
-                    setTimeout(function() {
-                        popup.update();
-                    }, 10);
+                    var img = popup._contentNode.querySelector('td img');
+                    if (img) {
+                        // If already loaded (cache), update immediately
+                        if (img.complete && img.naturalHeight > 0) {
+                            popup.update();
+                        } else {
+                            img.addEventListener('load', function() {
+                                popup.update();
+                            });
+                            img.addEventListener('error', function() {
+                                popup.update();
+                            });
+                        }
+                    }
                 } else if (/\.(mp3|wav|ogg|aac)$/i.test(src)) {
                     var audio = document.createElement('audio');
                     audio.controls = true;
@@ -480,15 +513,13 @@ td#coordenada {
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Lugar</th>\
-                        <td>' + (feature.properties['lugar'] !== null ? autolinker.link(String(feature.properties['lugar']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2" class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'') + '">' : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Ciudad</th>\
-                        <td class="visible-with-data" id="ciudad">' + (feature.properties['ciudad'] !== null ? autolinker.link(String(feature.properties['ciudad']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2" id="lugar">' + (feature.properties['lugar'] !== null ? autolinker.link(String(feature.properties['lugar']).replace(/'/g, '\'').toLocaleString()) : '') + (feature.properties['ciudad'] !== null ? '<div class="leem-ciudad">' + String(feature.properties['ciudad']) + '</div>' : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Título</th>\
+                        <th scope="row">Obra</th>\
                         <td>' + (feature.properties['titulo_lib'] !== null ? autolinker.link(String(feature.properties['titulo_lib']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -500,7 +531,7 @@ td#coordenada {
                         <td class="visible-with-data" id="anio_pub">' + (feature.properties['anio_pub'] !== null ? autolinker.link(String(feature.properties['anio_pub']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Genero</th>\
+                        <th scope="row">Género</th>\
                         <td class="visible-with-data" id="genero">' + (feature.properties['genero'] !== null ? autolinker.link(String(feature.properties['genero']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -512,19 +543,11 @@ td#coordenada {
                         <td class="visible-with-data" id="etiquetas">' + (feature.properties['etiquetas'] !== null ? autolinker.link(String(feature.properties['etiquetas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Foto</th>\
-                        <td class="visible-with-data" id="image_url">' + (feature.properties['image_url'] !== null ? '<img src="images/' + String(feature.properties['image_url']).replace(/'/g, '\'') + '" style="width:100%;max-width:300px;border-radius:6px;margin-top:6px;">' : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank">📷 Ver en Instagram</a>' : '') + '</td>\
+                        <td colspan="2" class="visible-with-data" id="insta_url">' + (feature.properties['insta_url'] !== null ? '<a href="' + String(feature.properties['insta_url']) + '" target="_blank">📷 Ver en Instagram</a>' : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Nota</th>\
                         <td class="visible-with-data" id="resumen">' + (feature.properties['resumen'] !== null ? autolinker.link(String(feature.properties['resumen']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tipo</th>\
-                        <td class="visible-with-data" id="tipo_pin">' + (feature.properties['tipo_pin'] !== null ? autolinker.link(String(feature.properties['tipo_pin']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Ruta</th>\

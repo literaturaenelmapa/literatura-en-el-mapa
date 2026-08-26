@@ -194,6 +194,10 @@
             justify-content: center;
             align-items: center;
         }
+        .leaflet-marker-icon{
+            white-space: nowrap;
+        }
+        
         .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
             display: none;
         }
