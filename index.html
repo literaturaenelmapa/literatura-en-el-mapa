@@ -38,7 +38,6 @@
 
 .leaflet-popup-content {
     margin: 0 !important;
-    width: 100% !important;
 }
 
 .leaflet-popup-tip {
@@ -59,6 +58,12 @@
 }
 
 /* ── La tabla se comporta como grilla de 2 columnas ──────── */
+/* El navegador inserta un <tbody> implicito: display:contents lo hace
+   transparente para que las filas sean hijas directas de la grilla */
+.leaflet-popup-content table tbody {
+    display: contents !important;
+}
+
 .leaflet-popup-content table {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
